@@ -1,8 +1,10 @@
 // let database = require("../database");
+const { findOne } = require("../database").userModel
 
 let remindersController = {
   list: (req, res) => {
-    res.render("reminder/index", { reminders: req.user.reminders });
+    const userFromDb = findOne(req.user.email);
+    res.render("reminder/index", { reminders: userFromDb.reminders });
   },
 
   new: (req, res) => {

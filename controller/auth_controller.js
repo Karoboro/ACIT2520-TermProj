@@ -3,7 +3,7 @@ const passport = require("../middleware/passport");
 
 let authController = {
   login: (req, res) => {
-    res.render("auth/login");
+    res.render("auth/login", {error: req.session.messages});
   },
 
   register: (req, res) => {
@@ -13,6 +13,7 @@ let authController = {
   loginSubmit: passport.authenticate("local", {
     successRedirect: "/reminders",
     failureRedirect: "/login",
+    failureMessage: true
   }),
 
   registerSubmit: (req, res) => {

@@ -4,7 +4,7 @@ let Database = [
         name: "Jimmy Smith",
         email: "jimmy123@gmail.com",
         password: "jimmy123!",
-        reminders: [{id: 1, title: "abc", description: "abcabc", completed: false}],
+        reminders: [{id: 1, title: "abc", description: "abcabc", completed: false, tags: ["Test", "tag"],}],
     },
     {
         id: 2,

@@ -139,3 +139,19 @@ footer.footer {
 .pull-right {
   float: right;
 }
+
+.reminder_tag {
+  background-color: lightblue;
+  padding: 5px 20px;
+  border-radius: 16px;
+  border-style: none;
+}
+
+.new_tag {
+  border-style: dotted;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.tagForm {
+  display: inline-block;
+}

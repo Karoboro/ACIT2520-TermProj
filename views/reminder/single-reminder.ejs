@@ -3,6 +3,10 @@
 
     <ul class="list-group">
       <li class="list-group-item">
+        <% for (const reminder of reminderItem.tags) { %>
+          <span class="reminder_tag"><%= reminder %></span>
+        <% } %>
+          <button type="submit" class="reminder_tag new_tag" href=<%= "/reminder/" + reminderItem.id + "/tag" %>>Add Tag</button>
         <h3><strong><%= reminderItem.title %>: </strong></h3>
         <h4><%= reminderItem.description %></h4>
         <h4>Completed:
@@ -15,7 +19,7 @@
 
         <a class="btn btn-warning" href=<%= "/reminder/" + reminderItem.id + "/edit" %>>Edit</a>
 
-        <form class="deleteForm "method="POST" action=<%= "/reminder/delete/" + reminderItem.id %>>
+        <form class="deleteForm" method="POST" action=<%= "/reminder/delete/" + reminderItem.id %>>
           <button type="submit" class="btn btn-danger">Delete</button>
         </form>
 
