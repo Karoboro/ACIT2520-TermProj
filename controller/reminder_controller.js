@@ -1,4 +1,3 @@
-// let database = require("../database");
 const { findOne } = require("../database").userModel
 
 let remindersController = {
@@ -13,7 +12,8 @@ let remindersController = {
 
   listOne: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = req.user.reminders.find(function (reminder) {
+    const userFromDb = findOne(req.user.email);
+    let searchResult = userFromDb.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     if (searchResult != undefined) {
@@ -24,19 +24,21 @@ let remindersController = {
   },
 
   create: (req, res) => {
+    const userFromDb = findOne(req.user.email);
     let reminder = {
-      id: req.user.reminders.length + 1,
+      id: userFromDb.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
     };
-    req.user.reminders.push(reminder);
+    userFromDb.reminders.push(reminder);
     res.redirect("/reminders");
   },
 
   edit: (req, res) => {
+    const userFromDb = findOne(req.user.email);
     let reminderToFind = req.params.id;
-    let searchResult = req.user.reminders.find(function (reminder) {
+    let searchResult = userFromDb.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     res.render("reminder/edit", { reminderItem: searchResult });
@@ -44,7 +46,8 @@ let remindersController = {
 
   update: (req, res) => {
     // implement this code
-    let searchIndex = req.user.reminders.findIndex((reminder) => reminder.id == req.params.id);
+    const userFromDb = findOne(req.user.email);
+    let searchIndex = userFromDb.reminders.findIndex((reminder) => reminder.id == req.params.id);
     let reminder = {
       id: req.params.id,
       title: req.body.title,
@@ -57,8 +60,9 @@ let remindersController = {
 
   delete: (req, res) => {
     // Implement this code
-    let searchIndex = req.user.reminders.findIndex((reminder) => reminder.id == req.params.id);
-    req.user.reminders.splice(searchIndex, 1);
+    const userFromDb = findOne(req.user.email);
+    let searchIndex = userFromDb.reminders.findIndex((reminder) => reminder.id == req.params.id);
+    userFromDb.reminders.splice(searchIndex, 1);
     for (const [idx, reminder] of req.user.reminders.entries()) {
       reminder.id = idx + 1;
     };

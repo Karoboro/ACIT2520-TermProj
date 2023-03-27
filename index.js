@@ -25,6 +25,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+// app.locals.user = undefined;
+app.use((req, res, next) => {
+  if (req.user) {
+    res.locals.user = req.user
+  } else {
+    res.locals.user = undefined;
+  }
+  next();
+})
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: false }));
