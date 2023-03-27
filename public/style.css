@@ -134,3 +134,8 @@ footer.footer {
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+/* custom css here */
+.pull-right {
+  float: right;
+}
