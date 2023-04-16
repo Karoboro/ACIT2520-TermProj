@@ -8,6 +8,21 @@
       <label for="description">Description</label>
       <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Description" name="description"></textarea>
     </div>
+    <div class="form-group">
+      <label for="due_date">Due Date:</label>
+      <input type="date" id="due_date" name="due_date" %> required>
+    </div>
+    <div class="form-group tag-group">
+      <label for="tags">Tags:</label>
+      <input type="button" id="tag_btn" name="tag_btn" value="Add Tags">
+      <br>
+    </div>
+    <div class="form-group subtask-group">
+      <label for="tasks">Subtasks:</label>
+      <input type="button" id="subtask_btn" name="subtask_btn" value="Add Subtasks">
+      <br>
+    </div>
     <button type="submit" class="btn btn-default">Submit</button>
+    <script src="/script.js"></script>
   </form>
 </div>

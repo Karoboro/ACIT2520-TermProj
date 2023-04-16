@@ -33,6 +33,27 @@
         </label>
       </div>
     </div>
+    <div class="form-group">
+      <label for="due_date">Due Date:</label>
+      <input type="date" id="due_date" name="due_date" value=<%= reminderItem.due_date %> required>
+    </div>
+    <div class="form-group tag-group">
+      <label for="tags">Tags:</label>
+      <input type="button" id="tag_btn" name="tag_btn" value="Add Tags">
+      <br>
+      <% reminderItem.tags.forEach((el) => { %>
+        <input type="text" id="tags" name="tags" value="<%= el %>"><br>
+      <% }) %>
+    </div>
+    <div class="form-group subtask-group">
+      <label for="tasks">Subtasks:</label>
+      <input type="button" id="subtask_btn" name="subtask_btn" value="Add Subtasks">
+      <br>
+      <% reminderItem.subtasks.forEach((el) => { %>
+        <input type="text" id="subtasks" name="subtasks" value="<%= el %>"><br>
+      <% }) %>
+    </div>
     <button type="submit" class="btn btn-default">Submit</button>
+    <script src="/script.js"></script>
   </form>
 </div>

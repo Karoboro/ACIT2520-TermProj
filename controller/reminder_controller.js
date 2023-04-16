@@ -30,6 +30,9 @@ let remindersController = {
       title: req.body.title,
       description: req.body.description,
       completed: false,
+      tags: req.body.tags ? [].concat(req.body.tags).filter(el => el) : [],
+      subtasks: req.body.subtasks ? [].concat(req.body.subtasks).filter(el => el) : [],
+      due_date: req.body.due_date,
     };
     userFromDb.reminders.push(reminder);
     res.redirect("/reminders");
@@ -53,6 +56,9 @@ let remindersController = {
       title: req.body.title,
       description: req.body.description,
       completed: JSON.parse(req.body.completed),
+      tags: req.body.tags ? [].concat(req.body.tags).filter(el => el) : [],
+      subtasks: req.body.subtasks ? [].concat(req.body.subtasks).filter(el => el) : [],
+      due_date: req.body.due_date,
     };
     req.user.reminders[searchIndex] = reminder;
     res.redirect("/reminders");
@@ -63,9 +69,9 @@ let remindersController = {
     const userFromDb = findOne(req.user.email);
     let searchIndex = userFromDb.reminders.findIndex((reminder) => reminder.id == req.params.id);
     userFromDb.reminders.splice(searchIndex, 1);
-    for (const [idx, reminder] of req.user.reminders.entries()) {
-      reminder.id = idx + 1;
-    };
+    req.user.reminders.forEach((reminder, idx) => {
+      reminder.id = idx + 1 ;
+    });
     res.redirect("/reminders");
   },
 };

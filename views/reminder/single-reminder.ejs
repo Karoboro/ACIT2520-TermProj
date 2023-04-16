@@ -3,10 +3,14 @@
 
     <ul class="list-group">
       <li class="list-group-item">
+        <h4>Due date: <%= reminderItem.due_date %></h4>
         <% for (const reminder of reminderItem.tags) { %>
           <span class="reminder_tag"><%= reminder %></span>
         <% } %>
-          <button type="submit" class="reminder_tag new_tag" href=<%= "/reminder/" + reminderItem.id + "/tag" %>>Add Tag</button>
+        <h4>Subtasks: </h4>
+        <% for (const task of reminderItem.subtasks) { %>
+          <span class="task"><%= task %></span>
+        <% } %>
         <h3><strong><%= reminderItem.title %>: </strong></h3>
         <h4><%= reminderItem.description %></h4>
         <h4>Completed:

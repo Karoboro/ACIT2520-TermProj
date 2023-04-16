@@ -13,6 +13,12 @@
         <span class="badge badge-danger">False</span>
       <% } %>
       <a class="pull-right" href=<%= "/reminder/" + reminderItem.id %>>View</a>
+      <br>
+      <span>Due date: <%= reminderItem.due_date %></span>
+      <br>
+      <span>Tags: <%= reminderItem.tags.join(", ") %></span>
+      <br>
+      <span>Subtasks: <%= reminderItem.subtasks.join(", ") %></span>
     </li>
   <% }) %>
 </ul>

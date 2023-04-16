@@ -147,6 +147,13 @@ footer.footer {
   border-style: none;
 }
 
+.task {
+  background-color: lightcoral;
+  padding: 5px 20px;
+  border-radius: 16px;
+  border-style: none;
+}
+
 .new_tag {
   border-style: dotted;
   background-color: rgba(0, 0, 0, 0);
