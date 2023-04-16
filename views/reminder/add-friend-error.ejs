@@ -1,0 +1,22 @@
+<% if (friends.length > 0) { %>
+    <div class="friendList">
+        <ul>Your Friends:
+          <% friends.forEach(function (friend) { %>
+          <li><%= friend %></li>
+          <% }) %>
+        </ul>
+    </div>
+    <% } %>
+    <div class="addFriendFeedback">
+        <p style="color:red;"><%= error %></p>
+    </div>
+    
+    <div class="container">
+        <form action="/addfriends" method="POST">
+          <div class="form-group">
+            <label for="title">Friend Email</label>
+            <input type="text" class="form-control" id="titleInput" placeholder="Email" name="email">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>

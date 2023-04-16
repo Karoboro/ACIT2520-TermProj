@@ -68,6 +68,10 @@ app.get("/logout", authController.logout);
 app.post("/register", authController.registerSubmit);
 app.post("/login", authController.loginSubmit);
 
+// add friends
+app.get("/addfriends", reminderController.getFriends)
+app.post("/addfriends", reminderController.addFriends)
+
 app.listen(3001, function () {
   console.log(
     "Server running. Visit: localhost:3001/reminders in your browser 🚀"

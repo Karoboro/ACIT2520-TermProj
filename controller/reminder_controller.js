@@ -3,7 +3,15 @@ const { findOne } = require("../database").userModel
 let remindersController = {
   list: (req, res) => {
     const userFromDb = findOne(req.user.email);
-    res.render("reminder/index", { reminders: userFromDb.reminders });
+    
+    // social reminders functionality
+    let friendReminders = []
+    for (let friend of userFromDb.friends) { // get latest friend data
+      let reminders = findOne(friend).reminders // get list of all friend's reminders for each friend in user's friend list
+      friendReminders.push(reminders)
+    }
+
+    res.render("reminder/index", { reminders: userFromDb.reminders, friends: friendReminders }) // userFromDb.friends }); // NEW: added friends
   },
 
   new: (req, res) => {
@@ -74,6 +82,43 @@ let remindersController = {
     });
     res.redirect("/reminders");
   },
+
+  getFriends: (req, res) => { // add friend screen
+    const userFromDb = findOne(req.user.email);
+    res.render("reminder/add-friends", { friends: userFromDb.friends });
+  },
+
+  addFriends: (req,res) => { // submit friend request
+    const friendEmail = req.body.email // stores email input
+    
+    
+    const userFromDb = findOne(req.user.email); // move this variable assignment before try/catch block to show the current user's list of friends on error message page.
+        
+    try { //[FIXED - Use a try/catch block to handle the findOne function throwing an error] 
+      friendFromDb = findOne(friendEmail);
+
+    } catch (errorMessage){
+   
+      res.render('reminder/add-friend-error', { friends: userFromDb.friends, error: errorMessage }); // render add-render-error page with error message thrown from findOne.
+      return
+    }
+    
+    if (!(userFromDb.friends.includes(friendEmail)) && req.user.email != friendEmail) { // check if the friend to be added is not already in friend list and is not the user
+      userFromDb.friends.push(friendEmail) // add friend's email to user's friend list
+      // Send a confirmation message to reminder/add-friends ejs
+      res.render("reminder/add-friends", { friends: userFromDb.friends, confirmation: "Friend successfully added." }); // redirect to add friends page 
+
+    } 
+    // Handle friend request to self.
+    else if (userFromDb.email === friendEmail) {
+      res.render("reminder/add-friend-error", { friends: userFromDb.friends, error: "You should already be friends with yourself."});
+    }
+      
+      //  Handle user adding duplicate friend. Redirects to error page with the error message below.
+    else { 
+      res.render("reminder/add-friend-error", { friends: userFromDb.friends, error: "This user is already in your Friends list!"});
+    }
+  }
 };
 
 module.exports = remindersController;

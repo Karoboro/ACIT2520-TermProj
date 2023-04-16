@@ -162,3 +162,16 @@ footer.footer {
 .tagForm {
   display: inline-block;
 }
+
+.friendList {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.addFriendFeedback {
+  display: flex;
+  padding: 30x;
+  margin-left: 30px;
+  justify-content: left;
+}

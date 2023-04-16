@@ -15,20 +15,43 @@ let Database = [
         due_date: "2023-01-01",
       },
     ],
+    friends:[],
   },
   {
     id: 2,
     name: "Johnny Doe",
     email: "johnny123@gmail.com",
     password: "johnny123!",
-    reminders: [],
+    reminders: [
+      {
+        id: 1,
+        title: "Johnny's Reminder",
+        description: "test friend reminder description",
+        completed: false,
+        tags: ["t1", "t2", "blah"],
+        subtasks: ["sub1", "subtask 2 lorem ipsum"],
+        due_date: "2023-01-01",
+      },
+    ],
+    friends:[],
   },
   {
     id: 3,
     name: "Jonathan Chen",
     email: "jonathan123@gmail.com",
     password: "jonathan123!",
-    reminders: [],
+    reminders: [
+      {
+        id: 1,
+        title: "Jonathon's Reminder",
+        description: "test friend reminder description",
+        completed: true,
+        tags: ["t1", "t2", "blah"],
+        subtasks: ["sub1", "subtask 2 lorem ipsum"],
+        due_date: "2023-05-10",
+      },
+    ],
+    friends:[],
   },
 ];
 

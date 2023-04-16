@@ -24,3 +24,39 @@
 </ul>
 
 </div>
+
+
+<!-- display friend reminders -->
+<% if (friends.length > 0) { %>
+  <div class="container">
+  <h1 class="page-header">Shared Reminders</h1>
+  
+    <ul class="list-group">
+    <% for (let friend of friends) { %>
+      <% friend.forEach(function (reminderItem) { %>
+        <li class="list-group-item">
+          <strong><%= reminderItem.title %>: </strong>
+          <%= reminderItem.description %>
+          || Completed:
+          <% if (reminderItem.completed == true) { %>
+            <span class="badge badge-success">True</span>
+          <% } else if (reminderItem.completed == false) { %>
+            <span class="badge badge-danger">False</span>
+          <% } %>
+          <!-- <a class="pull-right" href=<%= "/reminder/" + reminderItem.id %>>View</a> -->
+          <!-- NOTE: removed viewing ability because it was difficult to handle  -->
+          <br>
+          <span>Due date: <%= reminderItem.due_date %></span>
+          <br>
+          <span>Tags: <%= reminderItem.tags.join(", ") %></span>
+          <br>
+          <span>Subtasks: <%= reminderItem.subtasks.join(", ") %></span>
+           <!-- <a class="pull-right" href=<%= "/reminder/" + reminderItem.id %>>View</a>    -->
+            <!-- NOTE: took away ability to view details of friend's reminders bc it was a little complicated to handle -->
+        </li>
+      <% }) %>
+    <% } %>
+    </ul>
+  
+  </div>
+  <% } %>
